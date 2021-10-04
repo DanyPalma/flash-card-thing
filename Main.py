@@ -19,23 +19,22 @@ def render():
 
 bruh = 0
 def tick(deltatime):
+	speed = 0.2
+	pressed = pygame.key.get_pressed()
+	if pressed[K_w]:
+		player.vely -= speed 
+	if pressed[K_s]:
+		player.vely += speed
+	if pressed[K_a]:
+		player.velx -= speed
+	if pressed[K_d]:
+		player.velx += speed
+
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			running = False
 			pygame.quit()
 			sys.exit()
-		pressed = pygame.key.get_pressed()
-		global bruh
-		print(f'blah: {bruh}')
-		bruh += 1
-		if pressed[K_w]:
-			player.vely -= 0.3
-		if pressed[K_s]:
-			player.vely += 0.3
-		if pressed[K_a]:
-			player.velx -= 0.3
-		if pressed[K_d]:
-			player.velx += 0.3
 
 	player.update(deltatime)
 
@@ -55,31 +54,30 @@ class Player:
 			self.vely = maxspeed
 		elif self.vely < -maxspeed:
 			self.vely = -maxspeed
-		self.y = self.y + (dt * self.vely)
+		self.y += dt * self.vely
 
 		if self.velx > maxspeed:
 			self.velx = maxspeed
 		elif self.velx < -maxspeed:
 			self.velx = -maxspeed
-		self.x = self.x + (dt * self.velx)
+		self.x += dt * self.velx
 
-
+		drag = 0.05
 		if self.vely != 0 and abs(self.vely) > 0.0005:
 			if self.vely > 0:
-				self.vely = self.vely - 0.01
+				self.vely -= drag
 			elif self.vely < 0:
-				self.vely = self.vely + 0.01
+				self.vely += drag
 		else:
 			self.vely = 0
 
 		if self.velx != 0 and abs(self.velx) > 0.0005:
 			if self.velx > 0:
-				self.velx = self.velx - 0.01
+				self.velx -= drag
 			elif self.velx < 0:
-				self.velx = self.velx + 0.01
+				self.velx += drag
 		else:
 			self.velx = 0
-		#print(self.velx)
 
 	def render(self):
 		display.blit(self.sprite, (self.x, self.y))
@@ -89,8 +87,8 @@ pygame.init()
 pygame.display.set_caption('Flash Card Thing')
 running = True
 FPS = 60
-WIDTH = 680	 
-HEIGHT = 480 
+WIDTH = 1280	 
+HEIGHT = 720 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.NOFRAME, 32)
 display = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
