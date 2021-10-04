@@ -6,16 +6,11 @@ import time
 import pygame
 from pygame.locals import *
 
-
-def loadasset(name):
-	asset = pygame.image.load(f'{GAMEPATH}/Assets/{name}.png').convert()
-	asset.set_colorkey((0, 0, 0)) # removing black bg
-	return asset;
-
+import Player as Player
 
 def render():
 	display.fill(BGCOLOR)
-	player.render()
+	player.render(display)
 
 bruh = 0
 def tick(deltatime):
@@ -39,54 +34,10 @@ def tick(deltatime):
 	player.update(deltatime)
 
 
-class Player:
-	def __init__(self, x, y):
-		self.x = x
-		self.y = y
-		self.velx = 0
-		self.vely = 0
-		self.sprite = loadasset('tempcharacter')
-
-	def update(self, dt):
-		# This looks horrible #
-		maxspeed = 0.5
-		if self.vely > maxspeed:
-			self.vely = maxspeed
-		elif self.vely < -maxspeed:
-			self.vely = -maxspeed
-		self.y += dt * self.vely
-
-		if self.velx > maxspeed:
-			self.velx = maxspeed
-		elif self.velx < -maxspeed:
-			self.velx = -maxspeed
-		self.x += dt * self.velx
-
-		drag = 0.05
-		if self.vely != 0 and abs(self.vely) > 0.0005:
-			if self.vely > 0:
-				self.vely -= drag
-			elif self.vely < 0:
-				self.vely += drag
-		else:
-			self.vely = 0
-
-		if self.velx != 0 and abs(self.velx) > 0.0005:
-			if self.velx > 0:
-				self.velx -= drag
-			elif self.velx < 0:
-				self.velx += drag
-		else:
-			self.velx = 0
-
-	def render(self):
-		display.blit(self.sprite, (self.x, self.y))
-
-
 pygame.init()
 pygame.display.set_caption('Flash Card Thing')
 running = True
-FPS = 60
+FPS = 60 
 WIDTH = 1280	 
 HEIGHT = 720 
 screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.NOFRAME, 32)
@@ -94,7 +45,7 @@ display = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 BGCOLOR = (19, 27, 35)
 GAMEPATH = sys.path[0]
-player = Player(100, 100)
+player = Player.Player(100, 100, pygame)
 
 
 def main():
