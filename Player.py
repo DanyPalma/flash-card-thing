@@ -42,6 +42,19 @@ class Player:
 		else:
 			self.velx = 0
 
+		if self.x > 1280:
+			self.x = -64 
+		elif self.x < -64:
+			self.x = 1280
+
+		if self.y > 720:
+			self.y = -64 
+		elif self.y < -64:
+			self.y = 720
+
+
+
+
 	def render(self, display):
 		display.blit(self.sprite, (self.x, self.y))
 
