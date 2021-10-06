@@ -5,33 +5,27 @@ import sys
 import time
 import pygame
 from pygame.locals import *
-
+import Utils as u
 import Player as Player
+import Entity as Entity
+
 
 def render():
 	display.fill(BGCOLOR)
+#	for e in entities:
+#		e.render(display)
 	player.render(display)
 
-bruh = 0
-def tick(deltatime):
-	speed = 0.2
-	pressed = pygame.key.get_pressed()
-	if pressed[K_w]:
-		player.vely -= speed 
-	if pressed[K_s]:
-		player.vely += speed
-	if pressed[K_a]:
-		player.velx -= speed
-	if pressed[K_d]:
-		player.velx += speed
 
+def tick(deltatime):
+	pressed = pygame.key.get_pressed()
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			running = False
 			pygame.quit()
 			sys.exit()
 
-	player.update(deltatime)
+	player.update(deltatime, pressed)
 
 
 pygame.init()
@@ -45,7 +39,10 @@ display = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 BGCOLOR = (19, 27, 35)
 GAMEPATH = sys.path[0]
+entities = []
 player = Player.Player(100, 100, pygame)
+table = Entity.Entity('tf', 1000, 400, pygame)
+entities.append(table)
 
 
 def main():

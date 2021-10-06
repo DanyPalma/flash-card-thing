@@ -10,22 +10,24 @@ class Player:
 		self.vely = 0
 		self.sprite = u.loadasset('tempcharacter', pg)
 
-	def update(self, dt):
-		# This looks horrible #
+	def update(self, dt, pressed):
+		# this is horrid #
+		speed = 0.2
 		maxspeed = 0.5
-		if self.vely > maxspeed:
-			self.vely = maxspeed
-		elif self.vely < -maxspeed:
-			self.vely = -maxspeed
-		self.y += dt * self.vely
+		drag = 0.05
 
-		if self.velx > maxspeed:
-			self.velx = maxspeed
-		elif self.velx < -maxspeed:
-			self.velx = -maxspeed
+		if pressed[119] and self.vely > -maxspeed:
+			self.vely -= speed
+		if pressed[115] and self.vely < maxspeed:
+			self.vely += speed
+		if pressed[97] and self.velx > -maxspeed:
+			self.velx -= speed
+		if pressed[100] and self.velx < maxspeed:
+			self.velx += speed
+
+		self.y += dt * self.vely
 		self.x += dt * self.velx
 
-		drag = 0.05
 		if self.vely != 0 and abs(self.vely) > 0.0005:
 			if self.vely > 0:
 				self.vely -= drag
@@ -42,6 +44,7 @@ class Player:
 		else:
 			self.velx = 0
 
+		# Wrap around the screen #
 		if self.x > 1280:
 			self.x = -64 
 		elif self.x < -64:
@@ -51,7 +54,6 @@ class Player:
 			self.y = -64 
 		elif self.y < -64:
 			self.y = 720
-
 
 
 
