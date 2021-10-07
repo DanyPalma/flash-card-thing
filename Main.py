@@ -12,8 +12,10 @@ import Entity as Entity
 
 def render():
 	display.fill(BGCOLOR)
-#	for e in entities:
-#		e.render(display)
+	for e in entities:
+		e.render(display)
+		if e.istouching(player.hitbox):
+			display.blit(prompt, (player.x, player.y-64))
 	player.render(display)
 
 
@@ -43,6 +45,7 @@ entities = []
 player = Player.Player(100, 100, pygame)
 table = Entity.Entity('tf', 1000, 400, pygame)
 entities.append(table)
+prompt = u.loadasset('prompt', pygame)
 
 
 def main():

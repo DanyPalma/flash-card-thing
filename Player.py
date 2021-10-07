@@ -8,6 +8,7 @@ class Player:
 		self.y = y
 		self.velx = 0
 		self.vely = 0
+		self.hitbox = pg.Rect(x, y, 64, 64)
 		self.sprite = u.loadasset('tempcharacter', pg)
 
 	def update(self, dt, pressed):
@@ -55,6 +56,7 @@ class Player:
 		elif self.y < -64:
 			self.y = 720
 
+		self.hitbox.update(self.x, self.y, 64, 64)
 
 
 	def render(self, display):
