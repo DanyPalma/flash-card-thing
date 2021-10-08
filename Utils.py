@@ -12,4 +12,5 @@ def loadasset(name, pg):
 def initassets(pg):
 	global ASSETS
 	ASSETS.append(loadasset('prompt', pg))
+	ASSETS.append(loadasset('menubg', pg))
 

@@ -3,13 +3,14 @@
 import Utils as u
 
 class Entity:
-	def __init__(self, name, x, y, pg):
+	def __init__(self, name, x, y, w, h, pg):
 		self.x = x
 		self.y = y
 		self.velx = 0
 		self.vely = 0
-		self.hitbox = pg.Rect(x, y, 64, 64)
+		self.hitbox = pg.Rect(x, y, w, h)
 		self.sprite = u.loadasset(name, pg)
+		print('new ent')
 
 	def render(self, display):
 		display.blit(self.sprite, (self.x, self.y))
