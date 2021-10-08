@@ -9,15 +9,9 @@ import Utils as u
 import Player as Player
 import Entity as Entity
 
-
-def render():
-	display.fill(BGCOLOR)
-	for e in entities:
-		e.render(display)
-		if e.istouching(player.hitbox):
-			display.blit(prompt, (player.x, player.y-64))
-	player.render(display)
-
+#states#
+import Menu as menu
+import Game as game
 
 def tick(deltatime):
 	pressed = pygame.key.get_pressed()
@@ -26,7 +20,6 @@ def tick(deltatime):
 			running = False
 			pygame.quit()
 			sys.exit()
-
 	player.update(deltatime, pressed)
 
 
@@ -45,18 +38,19 @@ entities = []
 player = Player.Player(100, 100, pygame)
 table = Entity.Entity('tf', 1000, 400, pygame)
 entities.append(table)
-prompt = u.loadasset('prompt', pygame)
+state = [menu, game]
 
 
 def main():
 	while running:
 		deltatime = clock.tick(FPS)
 		tick(deltatime)
-		render()
 		screen.blit(pygame.transform.scale(display, screen.get_size()), (0, 0))
+		state[0].render(display, entities, player)
 		pygame.display.update()
 
 
 if __name__ == '__main__':
+	u.initassets(pygame)
 	main()
 
