@@ -35,11 +35,11 @@ def main():
 		TEMP = CURRENTSTATE
 		deltatime = clock.tick(FPS)
 		screen.blit(pygame.transform.scale(display, screen.get_size()), (0, 0))
-		CURRENTSTATE = state[CURRENTSTATE].tick(pygame, deltatime)
-		state[CURRENTSTATE].render(display)
+		state[CURRENTSTATE].tick(pygame, deltatime)
+		CURRENTSTATE = state[CURRENTSTATE].render(display, TEMP)
 		pygame.display.update()
 		if CURRENTSTATE != TEMP:
-			sate[CURRENTSTATE].init(pygame, Player, Entity)
+			state[CURRENTSTATE].init(pygame, Player, Entity)
 
 if __name__ == '__main__':
 	u.initassets(pygame)

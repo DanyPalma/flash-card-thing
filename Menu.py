@@ -5,6 +5,7 @@ import Utils as u
 
 entities = [] 
 player = None
+pressed = None
 
 def init(pg, plr, ent):
 	global player
@@ -16,17 +17,22 @@ def init(pg, plr, ent):
 	entities.append(boxb)
 
 
-def render(display):
+def render(display, cs):
 	display.fill((19, 27, 35))
 	display.blit(u.ASSETS[1], (0, 0))
 	for e in entities:
 		e.render(display)
 		if e.istouching(player.hitbox):
 			display.blit(u.ASSETS[0], (player.x, player.y-64))
+			if pressed[101]:
+				# switch the state #
+				return 1
 	player.render(display)
+	return cs
 
 
 def tick(pygame, deltatime):
+	global pressed
 	pressed = pygame.key.get_pressed()
 	for event in pygame.event.get():
 		if event.type == 256:
