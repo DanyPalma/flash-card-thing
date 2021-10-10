@@ -12,6 +12,7 @@ import Entity as Entity
 #states#
 import Menu as menu
 import Game as game
+import Flashcard as flashcard
 
 pygame.init()
 pygame.display.set_caption('Flash Card Thing')
@@ -24,19 +25,18 @@ display = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 BGCOLOR = (19, 27, 35)
 GAMEPATH = sys.path[0]
-state = [menu, game]
-CURRENTSTATE = 0
+state = [menu, game, flashcard]
+CURRENTSTATE = 1 
 
 
 def main():
 	global CURRENTSTATE
-	state[0].init(pygame, Player, Entity)
+	state[1].init(pygame, Player, Entity)
 	while running:
 		TEMP = CURRENTSTATE
 		deltatime = clock.tick(FPS)
 		screen.blit(pygame.transform.scale(display, screen.get_size()), (0, 0))
-		state[CURRENTSTATE].tick(pygame, deltatime)
-		CURRENTSTATE = state[CURRENTSTATE].render(display, TEMP)
+		CURRENTSTATE = state[CURRENTSTATE].update(display, deltatime, TEMP)
 		pygame.display.update()
 		if CURRENTSTATE != TEMP:
 			state[CURRENTSTATE].init(pygame, Player, Entity)
