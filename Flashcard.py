@@ -13,13 +13,14 @@ def init(pg, plr, ent):
 
 
 # These are so ugly the render and the tick methods are getting mixed!!!!!! #
-def update(display, deltatime, cs):
+def update(pygame, display, deltatime, cs):
 	# tick
 	global pressed
 	pressed = pygame.key.get_pressed()
 	mpos = pygame.mouse.get_pos()
 	print(mpos[1])
 	if pygame.mouse.get_pressed() == (1, 0, 0):
+		print('clociek')
 	for event in pygame.event.get():
 		if event.type == 256:
 			pygame.quit()

@@ -18,7 +18,7 @@ def init(pg, plr, ent):
 	print('game init')
 
 
-def render(display, deltatime, cs):
+def update(pygame, display, deltatime, cs):
 	# tick
 	global pressed
 	pressed = pygame.key.get_pressed()

@@ -36,7 +36,7 @@ def main():
 		TEMP = CURRENTSTATE
 		deltatime = clock.tick(FPS)
 		screen.blit(pygame.transform.scale(display, screen.get_size()), (0, 0))
-		CURRENTSTATE = state[CURRENTSTATE].update(display, deltatime, TEMP)
+		CURRENTSTATE = state[CURRENTSTATE].update(pygame, display, deltatime, TEMP)
 		pygame.display.update()
 		if CURRENTSTATE != TEMP:
 			state[CURRENTSTATE].init(pygame, Player, Entity)
