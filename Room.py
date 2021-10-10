@@ -15,7 +15,6 @@ def init(pg, plr, ent):
 	boxb = ent.Entity('blank', 800, 396, 295, 242, pg, None)
 	entities.append(boxa)
 	entities.append(boxb)
-	print('game init')
 
 
 def update(pygame, display, deltatime, cs):

@@ -5,12 +5,15 @@ import Utils as u
 
 entities = [] 
 pressed = None
+cardlist = []
 
 
 def init(pg, plr, ent):
 	global entities
+	global cardlist
 	addset = ent.Entity('blank', 1024, 8, 107, 52, pg, None)
 	entities.append(addset)
+	# issue 11 
 
 
 def update(pygame, display, deltatime, cs):
