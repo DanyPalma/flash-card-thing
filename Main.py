@@ -13,6 +13,7 @@ import Entity as Entity
 import Menu as menu
 import Game as game
 import Flashcard as flashcard
+import Createset as createset
 
 pygame.init()
 pygame.display.set_caption('Flash Card Thing')
@@ -25,7 +26,7 @@ display = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 BGCOLOR = (19, 27, 35)
 GAMEPATH = sys.path[0]
-state = [menu, game, flashcard]
+state = [menu, game, flashcard, createset]
 CURRENTSTATE = 1 
 
 

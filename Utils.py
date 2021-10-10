@@ -15,4 +15,5 @@ def initassets(pg):
 	ASSETS.append(loadasset('menubg', pg))
 	ASSETS.append(loadasset('gamebg', pg))
 	ASSETS.append(loadasset('test', pg))
+	ASSETS.append(loadasset('createcards', pg))
 

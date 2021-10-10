@@ -6,8 +6,6 @@ class Entity:
 	def __init__(self, name, x, y, w, h, pg, interactfunc):
 		self.x = x
 		self.y = y
-		self.velx = 0
-		self.vely = 0
 		self.hitbox = pg.Rect(x, y, w, h)
 		self.sprite = u.loadasset(name, pg)
 		self.activate = interactfunc 
