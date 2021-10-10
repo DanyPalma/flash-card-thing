@@ -2,7 +2,6 @@
 
 import sys
 import Utils as u
-import Textbox as tb
 
 entities = [] 
 pressed = None
@@ -104,9 +103,9 @@ def init(pg, plr, ent):
 	entities.append(ent.Entity('blank', 192, 576, 128, 128, pg, left))
 	entities.append(ent.Entity('blank', 960, 576, 128, 128, pg, right))
 
-	boxes.append(tb.Textbox(pg, 192, 18, 536, 79, '', (255, 255, 255), 32))
-	boxes.append(tb.Textbox(pg, 64, 192, 512, 320, '', (255, 255, 255), 32))
-	boxes.append(tb.Textbox(pg, 704, 192, 512, 320, '', (255, 255, 255), 32))
+	boxes.append(u.Textbox(pg, 192, 18, 536, 79, '', (255, 255, 255), 32))
+	boxes.append(u.Textbox(pg, 64, 192, 512, 320, '', (255, 255, 255), 32))
+	boxes.append(u.Textbox(pg, 704, 192, 512, 320, '', (255, 255, 255), 32))
 
 
 def update(pygame, display, deltatime, cs):
@@ -121,8 +120,6 @@ def update(pygame, display, deltatime, cs):
 	# render
 	display.fill((19, 27, 35))
 	display.blit(u.ASSETS[4], (0, 0))
-
-	#sur = lolfont.render(f'Card {currentcard+1} out of {len(cards)}', True, (255, 255, 255))
 
 	# fix this. yuck #
 	for box in boxes:
