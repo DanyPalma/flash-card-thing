@@ -8,6 +8,8 @@ from pygame.locals import *
 import Utils as u
 import Player as Player
 import Entity as Entity
+import random
+from pygame import mixer
 
 #states#
 import Room as room 
@@ -15,6 +17,7 @@ import Flashcard as flashcard
 import CreateFlashcardSet as createset
 
 pygame.init()
+pygame.mixer.init()
 pygame.display.set_caption('Flash Card Thing')
 running = True
 FPS = 60 
@@ -28,6 +31,16 @@ GAMEPATH = sys.path[0]
 state = [None, room, flashcard, createset]
 CURRENTSTATE = 1 
 
+ # this is if we want to choose like a random mp3 or something 
+ #path = './Music/'
+ #all_mp3 = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.mp3')]
+
+ #randomFile = random.choice(all_mp3) 
+
+backgroundMusic = ("./Music/8bit/Zelda.mp3")
+
+pygame.mixer.music.load(backgroundMusic)
+pygame.mixer.music.play(-1)
 
 def main():
 	global CURRENTSTATE
@@ -44,4 +57,4 @@ def main():
 if __name__ == '__main__':
 	u.initassets(pygame)
 	main()
-
+	pygame.mixer.Music.set_volume(backgroundMusic, 0.5)

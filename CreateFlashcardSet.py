@@ -103,8 +103,11 @@ def init(pg, plr, ent):
 	entities.append(ent.Entity('blank', 192, 576, 128, 128, pg, left))
 	entities.append(ent.Entity('blank', 960, 576, 128, 128, pg, right))
 
+#title
 	boxes.append(u.Textbox(pg, 192, 18, 536, 79, '', (255, 255, 255), 32))
+#left
 	boxes.append(u.Textbox(pg, 64, 192, 512, 320, '', (255, 255, 255), 32))
+#right
 	boxes.append(u.Textbox(pg, 704, 192, 512, 320, '', (255, 255, 255), 32))
 
 
